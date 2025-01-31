@@ -17,11 +17,15 @@
      npm init -y
      ```
    - This will create a default `package.json` file with necessary metadata for the project.
+   - for custom initialize run the following command:
+     ```bash
+     npm init
+     ```
 
 3. **Install Required Packages**
    - Install the necessary dependencies for the backend:
      ```bash
-     npm install express mongoose dotenv cors bcryptjs jsonwebtoken morgan
+     npm install express mongoose dotenv cors bcryptjs jsonwebtoken
      npm install --save-dev nodemon
      ```
    - **Package Descriptions**:
@@ -31,7 +35,6 @@
      - `cors`: Enables Cross-Origin Resource Sharing.
      - `bcryptjs`: Handles password hashing securely.
      - `jsonwebtoken`: Used for JWT (JSON Web Token) authentication.
-     - `morgan`: HTTP request logger for debugging purposes.
      - `nodemon`: Restarts the server automatically when files are changed during development.
 
 4. **Set Up Scripts**
