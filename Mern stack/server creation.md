@@ -17,7 +17,7 @@
      npm init -y
      ```
    - This will create a default `package.json` file with necessary metadata for the project.
-   - for custom initialize run the following command:
+   - If you want to create the `package.json` with custom initialize, then follow this command:
      ```bash
      npm init
      ```
@@ -25,7 +25,7 @@
 3. **Install Required Packages**
    - Install the necessary dependencies for the backend:
      ```bash
-     npm install express mongoose dotenv cors bcryptjs jsonwebtoken
+     npm install express mongoose dotenv cors bcryptjs jsonwebtoken cookie-parser helmet
      npm install --save-dev nodemon
      ```
    - **Package Descriptions**:
@@ -35,6 +35,9 @@
      - `cors`: Enables Cross-Origin Resource Sharing.
      - `bcryptjs`: Handles password hashing securely.
      - `jsonwebtoken`: Used for JWT (JSON Web Token) authentication.
+     - `cookie-parser`: User for parse the cookie sent with the request.
+     - `helmet`: Secures Express apps by setting various HTTP headers to protect against common web vulnerabilities.
+     - `express-rate-limit`: Middleware for rate-limiting requests to prevent abuse and DDoS attacks.
      - `nodemon`: Restarts the server automatically when files are changed during development.
 
 4. **Set Up Scripts**
@@ -59,7 +62,6 @@
    import express from 'express';
    import dotenv from 'dotenv';
    import cors from 'cors';
-   import morgan from 'morgan';
    import connectDB from './src/config/db.js'; // Database connection
 
    // Load environment variables
@@ -70,14 +72,20 @@
    // Middleware
    app.use(cors()); // Enable Cross-Origin Resource Sharing
    app.use(express.json()); // Parse incoming JSON requests
-   app.use(morgan('dev')); // Log HTTP requests
-
+   app.use(cookieParser())
+   app.use(helmet());
+   app.use('/api/auth', rateLimit({
+     windowMs: 15 * 60 * 1000,
+     max: 100
+   }));
+   
    // Connect to MongoDB
    connectDB();
 
    // Routes
    import authRoutes from './src/routes/authRoutes.js';
    import userRoutes from './src/routes/userRoutes.js';
+   
    app.use('/api/auth', authRoutes); // Authentication routes
    app.use('/api/users', userRoutes); // User-related routes
 
