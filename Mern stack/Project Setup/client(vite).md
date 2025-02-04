@@ -276,11 +276,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ```json
 "scripts": {
-  "dev": "vite",                 // Starts the Vite development server
-  "build": "vite build",         // Builds the project for production
-  "preview": "vite preview",     // Previews the production build locally
-  "lint": "eslint src --ext .js,.jsx --fix", // Runs ESLint on the source files and fixes issues
-  "audit": "npm audit --omit=dev"  // Runs npm audit to check for vulnerabilities, excluding dev dependencies
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "lint": "eslint src --ext .js,.jsx --fix",
+  "audit": "npm audit --omit=dev"
 }
 
 ```
